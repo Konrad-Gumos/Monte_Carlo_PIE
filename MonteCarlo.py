@@ -41,23 +41,24 @@ drawFigures(1,1,X4,Y4,inCircVerify(X4,Y4))
 plt.show()
 
 pis = []
-for k in range(100,1000):
+for k in range(100,50000):
     [X,Y] = drawNumber(k)
     pis.append(inCircVerify(X,Y))
 
 plt.plot(pis)
-plt.title("Wykres wyznaczanej wartości dla liczby losowanych punktów")
-plt.hlines(3.14,0,1000,color="red",label="3.14")
+plt.title("Wykres wyznaczanej wartości π dla liczby losowanych punktów")
+plt.hlines(3.14,0,50000,color="red",label="3.14")
 plt.xlabel("Liczba losowanych punktów")
 plt.ylabel("Wyznaczana wartość")
 plt.show()
 
 ns = [100000,250000,500000,750000,1000000]
-data = [[inCircVerify(drawNumber(n)[0],drawNumber(n)[1]) for _ in range(10)] for n in ns]
+data = [[inCircVerify(drawNumber(n)[0],drawNumber(n)[1]) for _ in range(100)] for n in ns]
 print(data)
 plt.boxplot(data)
 plt.hlines(3.14,0,6,color="red",label="3.14",linestyles="dashed")
-# plt.xticks(ns)
+plt.xticks(ticks=range(1, len(ns)+1), labels=ns)
 plt.xlabel("Liczba losowanych punktów")
 plt.ylabel("Wyznaczana wartość")
+plt.title("Rozkład wyników dla różnych N w estymacji liczby π")
 plt.show()
